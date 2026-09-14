@@ -1,5 +1,4 @@
-
-AHEAD AI Bot
+name: AHEAD AI Bot
 
 on:
   workflow_dispatch:
@@ -17,5 +16,11 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install 
-        run: pip ins python bot.py
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Telegram Bot
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python bot.py
